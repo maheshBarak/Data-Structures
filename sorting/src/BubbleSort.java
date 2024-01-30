@@ -1,15 +1,21 @@
 import java.util.Arrays;
 
-public class SelectionSort {
+public class BubbleSort {
     public static void main(String[] args) {
         int[] arr = {12, 4, 11, 3, 19, 7, 5, 10};
         int n=arr.length;
 
-
         for(int i=0;i<n;i++){
-            int lastIndex = n-1-i;
-            int maxIndex = findMax(arr,0,lastIndex);
-            swapNumber(arr,lastIndex,maxIndex);
+            boolean swapped=false;
+            for(int j=1;j<n-i;j++){
+                if(arr[j]<arr[j-1]){
+                    swapNumber(arr,j,j-1);
+                    swapped=true;
+                }
+        //        System.out.println(Arrays.toString(arr));
+            }
+            if(!swapped) break;
+        //    System.out.println();
         }
         System.out.println(Arrays.toString(arr));
     }
@@ -19,13 +25,4 @@ public class SelectionSort {
         arr[lastIndex] = arr[maxIndex];
         arr[maxIndex] = temp;
     }
-
-    private static int findMax(int[] arr, int startIndex, int lastIndex) {
-        int max = startIndex;
-        for(int i=0;i<=lastIndex;i++){
-            if(arr[max]<arr[i]) max = i;
-        }
-        return max;
-    }
-
 }
